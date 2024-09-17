@@ -1,0 +1,72 @@
+* {box-sizing: border-box;}
+
+:root {
+       --slotSize: 45px;
+}
+
+body {
+       margin: 0;
+}
+
+.craftingCont {flex-flow: column wrap; background: rgb(200, 200, 200);}
+
+.craftingCont, .craftingCont .craftingMenu, .craftingCont .grid .slot {display: flex;}
+
+.craftingCont .craftingMenu {flex-flow: row nowrap; width: min-content;}
+
+.craftingCont .grid {
+       display: grid;
+       grid-template-columns: repeat(var(--colCount), auto);
+       grid-template-rows: repeat(var(--rowCount), auto);
+       padding: 5px;
+       width: calc(10px + (var(--slotSize) * var(--colCount)));
+       width: calc(10px + (var(--slotSize) * var(--rowCount)));
+}
+
+.craftingCont .grid .slot {
+       position: relative;
+       width: var(--slotSize);
+       height: var(--slotSize);
+       background: rgb(150, 150, 150);
+       border-width: 2px 1px 1px 2px;
+       border-style: solid;
+       border-color: rgb(80, 80, 80) white white rgb(80, 80, 80);
+       justify-content: center;
+       align-items: center;
+}
+
+.craftingCont .grid .slot:hover:not(.active) {
+       background: rgb(180, 180, 180);
+}
+
+.craftingCont .grid .slot::after {
+       content: "";
+       width: calc(var(--slotSize) - 8px);
+       height: calc(var(--slotSize) - 8px);
+       position: absolute;
+       bottom: 1px;
+       right: 1px;
+       border: inherit;
+}
+
+.craftingCont .craftingMenu .crafting {
+       --colCount: 3;
+       --rowCount: 3;
+}
+
+.craftingCont .craftingMenu .output {
+       --slotSize: 90px;
+       --colCount: 1;
+       --rowCount: 1;
+       justify-content: center;
+       align-items: center;
+}
+
+.craftingCont .inventory {
+       --colCount: 9;
+       --rowCount: 3;
+}
+
+.craftingCont .slot.active {
+       background: rgb(0, 235, 230);
+}
